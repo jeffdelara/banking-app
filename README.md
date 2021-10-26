@@ -1,3 +1,14 @@
+# Hierarchy
+
+* App
+    * Menu
+    * Main
+        * Savings Div
+        * Transfer Btn
+        * Transaction History Section
+            * Transaction Headings (debit/credit/balance)
+            * Transaction Item
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
