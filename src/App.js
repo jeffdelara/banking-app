@@ -45,33 +45,51 @@ class SideLink extends React.Component {
 
 class MainContent extends React.Component {
   render() {
+    const users = this.props.users;
+    
+    const bankAccounts = users.map(user => {
+      return <Account fullname={user.fullname} 
+                      type={user.type} 
+                      accountNumber={user.number} 
+                      balance={user.balance} />
+    });
+    
+    // console.log(bankAccounts);
     return (
       <section id="main-content">
-        <Account type="Savings Peso" accountNumber="4327059388" balance="1,002,000" />
-        <ActionButtons />
-        <Transactions />
+        {bankAccounts}
       </section>
     )
   }
 }
 class Account extends React.Component {
   render() {
-    const {type, accountNumber, balance} = this.props;
+    const {type, accountNumber, balance, fullname} = this.props;
     return (
       <div className="account">
           <div className="details">
+              <AccountHolder fullname={fullname} />
               <AccountType type={type} />
               <AccountNumber accountNumber={accountNumber} />
+              <ActionButtons />
           </div>
-          <AccountBalance balance={balance} />
+          <AccountBalance balance={formatNumber(balance)} />
       </div>
+    )
+  }
+}
+
+class AccountHolder extends React.Component {
+  render() {
+    return (
+      <h1>{this.props.fullname}</h1>
     )
   }
 }
 class AccountType extends React.Component {
   render() {
     return (
-      <h2>{this.props.type}</h2>
+      <h3>{this.props.type}</h3>
     )
   }
 }
@@ -96,7 +114,6 @@ class ActionButtons extends React.Component {
     return (
       <div id="actions">
         <ActionButton icon="bx bx-transfer" text="Transfer Funds" />
-        <ActionButton icon="bx bx-copy-alt" text="Pay bills" />
       </div>
     )
   }
@@ -111,64 +128,68 @@ class ActionButton extends React.Component {
   }
 }
 
-class Transactions extends React.Component {
-  render() {
-    return (
-      <div id="transactions">
-        <table>
-            <TransactionHeader />
-            <tbody>
-              <TransactionRow 
-                  date="Oct 31" 
-                  transaction="Credit card payment"
-                  amount="2,500"
-                  balance="1,000,000" />
-              <TransactionRow 
-                  date="Oct 31" 
-                  transaction="Credit card payment"
-                  amount="2,500"
-                  balance="1,000,000" />
-            </tbody>
-          </table>
-      </div>
-    )
-  }
-}
-class TransactionHeader extends React.Component {
-  render() {
-    return (
-      <thead>
-        <tr>
-          <th></th>
-          <th></th>
-          <th>Debit/Credit</th>
-          <th>Running Balance</th>
-        </tr>
-      </thead>
-    )
-  }
+// class Transactions extends React.Component {
+//   render() {
+//     const transactions = this.props.transactions;
+
+//     const transactionItems = transactions.map(transaction => {
+//       return <TransactionRow date={transaction.date} 
+//             transaction={transaction.description} 
+//             amount={transaction.amount} 
+//             type={transaction.type} />
+//     })
+
+//     return (
+//       <div id="transactions">
+//         <table>
+//             <TransactionHeader />
+//             <tbody>
+//               {transactionItems}
+//             </tbody>
+//           </table>
+//       </div>
+//     )
+//   }
+// }
+// class TransactionHeader extends React.Component {
+//   render() {
+//     return (
+//       <thead>
+//         <tr>
+//           <th></th>
+//           <th></th>
+//           <th>Debit/Credit</th>
+//         </tr>
+//       </thead>
+//     )
+//   }
+// }
+
+function formatNumber(number) 
+{
+  return number.toLocaleString(undefined, {maximumFractionDigits: 2});
 }
 
-class TransactionRow extends React.Component {
-  render () {
-    const {date, transaction, amount, balance} = this.props;
-    return (
-      <tr>
-        <td>{date}</td>
-        <td>{transaction}</td>
-        <td>{amount}</td>
-        <td>{balance}</td>
-      </tr>
-    )
-  }
-}
+// class TransactionRow extends React.Component {
+//   render () {
+//     const {date, transaction, amount, type} = this.props;
+//     const netAmount = type === 'credit' ? amount * -1 : amount;
+    
+//     return (
+//       <tr>
+//         <td>{date}</td>
+//         <td>{transaction}</td>
+//         <td>{formatNumber(netAmount)}</td>
+//       </tr>
+//     )
+//   }
+// }
 
-function App() {
-  console.log(DATA);
+function App() {  
   return (
     <main>
       <Sidebar />
-      <MainContent />
+      <MainContent users={DATA} />
     </main>
   );
 }
