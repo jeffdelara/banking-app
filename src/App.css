@@ -99,6 +99,7 @@ h1, h2, h3 {
     cursor: pointer;
     transition: .3s;
     border-radius: 3px;
+    margin-right: .3rem;
 }
 
 #actions button:hover {

@@ -1,6 +1,6 @@
 const DATA = [
     {
-        username: "user123",
+        email: "user123@gmail.com",
         password: "abc123",
         fullname: "Jeffrey de Lara",
         type: "Savings Peso",
@@ -8,7 +8,7 @@ const DATA = [
         balance: 1029300.43
     },
     {
-        username: "user2",
+        email: "user2@gmail.com",
         password: "abc123",
         fullname: "Juan dela Cruz",
         type: "Savings Peso",
@@ -16,12 +16,20 @@ const DATA = [
         balance: 392830.22
     },
     {
-        username: "user2",
+        email: "user24@gmail.com",
         password: "abc123",
         fullname: "Peter de Castro",
         type: "Savings Peso",
         number: "47290539483",
         balance: 102938.34
+    },
+    {
+        email: "user34@gmail.com",
+        password: "abc123",
+        fullname: "Noli Enriquez",
+        type: "Checking Peso",
+        number: "47290539484",
+        balance: 837495.38
     }
 ];
 

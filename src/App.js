@@ -26,8 +26,8 @@ class SideMenu extends React.Component {
     return (
       <ul>
           <SideLink icon="bx bx-home" text="Home" />
-          <SideLink icon="bx bx-transfer" text="Transfer Funds" />
-          <SideLink icon="bx bx-user-pin" text="Profile" />
+          <SideLink icon="bx bx-user-pin" text="Create Account" />
+          <SideLink icon="bx bx-transfer" text="Transfer/Withdraw" />
           <SideLink icon="bx bx-log-out" text="Logout" />
       </ul>
     )
@@ -114,6 +114,7 @@ class ActionButtons extends React.Component {
     return (
       <div id="actions">
         <ActionButton icon="bx bx-transfer" text="Transfer Funds" />
+        <ActionButton icon="bx bx-transfer" text="Withdraw Funds" />
       </div>
     )
   }
@@ -128,62 +129,11 @@ class ActionButton extends React.Component {
   }
 }
 
-// class Transactions extends React.Component {
-//   render() {
-//     const transactions = this.props.transactions;
-
-//     const transactionItems = transactions.map(transaction => {
-//       return <TransactionRow date={transaction.date} 
-//             transaction={transaction.description} 
-//             amount={transaction.amount} 
-//             type={transaction.type} />
-//     })
-
-//     return (
-//       <div id="transactions">
-//         <table>
-//             <TransactionHeader />
-//             <tbody>
-//               {transactionItems}
-//             </tbody>
-//           </table>
-//       </div>
-//     )
-//   }
-// }
-// class TransactionHeader extends React.Component {
-//   render() {
-//     return (
-//       <thead>
-//         <tr>
-//           <th></th>
-//           <th></th>
-//           <th>Debit/Credit</th>
-//         </tr>
-//       </thead>
-//     )
-//   }
-// }
-
 function formatNumber(number) 
 {
   return number.toLocaleString(undefined, {maximumFractionDigits: 2});
 }
 
-// class TransactionRow extends React.Component {
-//   render () {
-//     const {date, transaction, amount, type} = this.props;
-//     const netAmount = type === 'credit' ? amount * -1 : amount;
-    
-//     return (
-//       <tr>
-//         <td>{date}</td>
-//         <td>{transaction}</td>
-//         <td>{formatNumber(netAmount)}</td>
-//       </tr>
-//     )
-//   }
-// }
 
 function App() {  
   return (
