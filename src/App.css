@@ -4,6 +4,8 @@
     --secondary-color: rgb(219, 204, 163);
     --text-color: rgb(59, 49, 40);
     --secondary-text-color: rgb(110, 97, 81);
+    --shadow: 0px 1px 2px rgba(170, 170, 170, .4);
+    --font-family: 'Inter', sans-serif;
 }
 
 * {
@@ -13,7 +15,7 @@
 }
 
 body {
-    font-family: 'Inter', sans-serif;
+    font-family: var(--font-family);
     color: var(--text-color);
     background-color: var(--first-color);
 }
@@ -51,6 +53,11 @@ h1, h2, h3 {
 #side-menu a {
     color: var(--secondary-color);
     text-decoration: none;
+    transition: .3s;
+}
+
+#side-menu a:hover {
+  color: white;
 }
 
 #main-content {
@@ -67,7 +74,7 @@ h1, h2, h3 {
     padding: 1.5rem;
     border-radius: .3rem;
     margin-bottom: 1rem;
-    box-shadow: 0px 1px 2px rgba(170, 170, 170, .4);
+    box-shadow: var(--shadow);
 }
 
 #main-content h3 {
@@ -140,43 +147,77 @@ h1, h2, h3 {
     padding: .8rem;
 }
 
+#login-page {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+label {
+  width: 100%;
+  display: block;
+}
+#login {
+  background-color: white;
+  max-width: 500px;
+  width: 100%;
+  padding: 2rem;
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+}
 
-/* .App {
+#login #logo {
+  color: var(--text-color);
   text-align: center;
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+#login label {
+  text-transform: uppercase;
+  margin-bottom: .3rem;
+  margin-top: .6rem;
+  color: rgba(59, 49, 40, .6);
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
+#login input {
+  font-family: var(--font-family);
+  outline: none;
+  width: 100%;
+  font-size: 1.4rem;
+  padding: .3rem .5rem;
+  border-radius: 3px;
+  border: 1px solid var(--text-color);
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+.btn {
+  
+  background-color: var(--secondary-text-color);
+  color: white;
+  padding: .7rem;
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  border: 0;
+  cursor: pointer;
+  transition: .3s;
+  border-radius: 3px;
+  margin: 1rem 0 0 0;
+  margin-bottom: 1rem;
+  display: block;
+  width: 100%;
+}
+
+.btn:hover {
+  background-color: var(--text-color);
   color: white;
 }
 
-.App-link {
-  color: #61dafb;
+.notif {
+  display: block;
+  width: 100%;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-} */
+.danger {
+  color: red;
+}
