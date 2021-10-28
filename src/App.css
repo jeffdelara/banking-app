@@ -23,7 +23,7 @@ body {
 main {
     height: 100vh;
     display: grid;
-    grid-template-columns: 250px auto;
+    grid-template-columns: 350px auto;
 }
 
 h1, h2, h3 {
@@ -46,7 +46,7 @@ h1, h2, h3 {
 }
 
 #side-menu ul li {
-    border-bottom: 1px solid var(--secondary-text-color);
+    /* border-bottom: 1px solid var(--secondary-text-color); */
     padding: .8rem 0;
 }
 
@@ -170,6 +170,7 @@ label {
 
 #login #logo {
   color: var(--text-color);
+  font-size: 2.8rem;
   text-align: center;
 }
 

@@ -16,6 +16,7 @@ export const Authenticate = () => {
           if(user.isAdmin) {
             setIsAdmin(true);
           }
+          setNotif('');
           isFound = true;
         }
       });
@@ -30,10 +31,10 @@ export const Authenticate = () => {
         }
     }
   
-    const logout = (e) => {
-        e.preventDefault();
+    const logout = () => {
         setIsLoggedIn(false);
         setIsAdmin(false);
+        setNotif('You have logged out.');
     }
   
     if(isLoggedIn) {

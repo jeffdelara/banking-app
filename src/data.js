@@ -35,6 +35,16 @@ const DATA = [
         number: "47290539484",
         balance: 837495.38, 
         isAdmin: false
+    },
+
+    {
+        email: "kibabe@gmail.com",
+        password: "abc123",
+        fullname: "Karen Davila",
+        type: "Checking Peso",
+        number: "47290539485",
+        balance: 574839.58, 
+        isAdmin: false
     }
 ];
 
