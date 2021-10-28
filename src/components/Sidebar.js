@@ -11,9 +11,7 @@ export const Sidebar = (props) => {
 }
   
 export const SideMenu = (props) => {
-    const clickHandler = () => {
-        console.log("CLICK");
-    }
+
     return (
         <ul>
             <SideLink onClickHandler={props.changePage} page="home" icon="bx bx-home" text="Home" />
