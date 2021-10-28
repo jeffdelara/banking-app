@@ -20,14 +20,34 @@ body {
     background-color: var(--first-color);
 }
 
+hr {
+  margin: 2rem 0;
+  border: 0;
+  border-top: 1px solid #CCC;
+}
+
 main {
     height: 100vh;
     display: grid;
-    grid-template-columns: 350px auto;
+    grid-template-columns: 300px auto;
 }
 
 h1, h2, h3 {
   margin: .3rem 0;
+}
+
+#form {
+  background-color: white;
+  padding: 2rem;
+  border-radius: 3px;
+  box-shadow: var(--shadow);
+  max-width: 800px;
+}
+
+#form h1 {
+  font-size: 2rem;
+  margin-top: 0;
+  margin-bottom: 2rem;
 }
 
 #logo {
@@ -174,14 +194,14 @@ label {
   text-align: center;
 }
 
-#login label {
+#login label, label {
   text-transform: uppercase;
   margin-bottom: .3rem;
   margin-top: .6rem;
   color: rgba(59, 49, 40, .6);
 }
 
-#login input {
+#login input, input, select {
   font-family: var(--font-family);
   outline: none;
   width: 100%;
@@ -221,4 +241,8 @@ label {
 
 .danger {
   color: red;
+}
+
+input:disabled {
+  border: 1px solid #CCC;
 }

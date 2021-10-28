@@ -1,5 +1,6 @@
 import React from "react";
 import { ActionButtons } from "./ActionButtons";
+import { formatNumber } from "./Utils";
 
 export const Account = (props) => {
     const {type, accountNumber, balance, fullname} = props;
@@ -45,7 +46,3 @@ export const AccountBalance = (props) => {
     )
   }
 
-function formatNumber(number) 
-{
-    return number.toLocaleString(undefined, {maximumFractionDigits: 2});
-}

@@ -2,8 +2,8 @@ import React, { useState } from 'react';
 import { Logo } from './Logo';
 
 export const LoginPage = (props) => {
-    const [username, setUsername] = useState(null);
-    const [password, setPassword] = useState(null);
+    const [username, setUsername] = useState('');
+    const [password, setPassword] = useState('');
   
     const onSubmitHandler = (event) => {
       event.preventDefault();
@@ -24,9 +24,9 @@ export const LoginPage = (props) => {
           <Logo />
           <div className="notif danger">{props.notif}</div>
           <form onSubmit={onSubmitHandler}>
-            <label for="username">Username</label>
+            <label htmlFor="username">Username</label>
             <input id="username" autoComplete="off" onChange={onChangeUsername}  value={username} type="text" />
-            <label for="password">Password</label>
+            <label htmlFor="password">Password</label>
             <input id="password" autoComplete="off" onChange={onChangePassword} value={password} type="password" />
             <button type="submit" className="btn">Login</button>
           </form>

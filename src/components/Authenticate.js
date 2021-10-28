@@ -8,10 +8,18 @@ export const Authenticate = () => {
     const [notif, setNotif] = useState('');
     const [isAdmin, setIsAdmin] = useState(false);
   
+    const localUsers = localStorage.getItem('users');
+    
+    if(!localUsers) {
+      localStorage.setItem('users', JSON.stringify(DATA));
+    }
+
+    const clients = JSON.parse(localStorage.getItem('users'));
+
     const isAdminLoginSuccess = (email, password) => {
       let isFound = false;
 
-      DATA.forEach(user => {
+      clients.forEach(user => {
         if(user.email === email && user.password === password) {
           if(user.isAdmin) {
             setIsAdmin(true);
@@ -39,9 +47,10 @@ export const Authenticate = () => {
   
     if(isLoggedIn) {
       if(isAdmin) {
-        return <Dashboard logoutHandler={logout} />
+        return <Dashboard users={clients} logoutHandler={logout} />
       } else {
         // Todo: ClientDashboard
+        // Clients have different dashboard
         return "You are a client.";
       }
     } else {
