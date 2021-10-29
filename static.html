@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href="%PUBLIC_URL%/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="description"
+      content="Web site created using create-react-app"
+    />
+    <link rel="apple-touch-icon" href="%PUBLIC_URL%/logo192.png" />
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" />
+    <title>Banking App</title>
+    <link href='https://unpkg.com/boxicons@2.0.9/css/boxicons.min.css' rel='stylesheet'>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    
+    <main>
+        <section id="side-menu">
+            <h1 id="logo"><i class='bx bxs-paper-plane' ></i> Avion Bank</h1>
+            <ul>
+                <li><a href="#"><i class='bx bx-home' ></i> Home</a></li>
+                <li><a href="#"><i class='bx bx-transfer' ></i> Transfer Funds</a></li>
+                <li><a href="#"><i class='bx bx-user-pin' ></i> Profile</a></li>
+                <li><a href="#"><i class='bx bx-log-out' ></i> Logout</a></li>
+            </ul>
+        </section>
+
+        <section id="main-content">
+            <div class="account">
+                <div class="details">
+                    <h2>SAVINGS Peso</h2>
+                    <div>4367129321</div>
+                </div>
+                <div class="balance">1,000,000</div>
+            </div>
+
+            <div id="actions">
+                <button><i class='bx bx-transfer' ></i> Transfer Funds</button>
+                <button><i class='bx bx-copy-alt' ></i> Pay bills</button>
+            </div>
+
+            <div id="transactions">
+                <table>
+                    <tr>
+                      <th></th>
+                      <th></th>
+                      <th>Debit/Credit</th>
+                      <th>Running Balance</th>
+                    </tr>
+                    <tr>
+                      <td>Oct 31</td>
+                      <td>Fund Transfer</td>
+                      <td>8,500</td>
+                      <td>1,000,000</td>
+                    </tr>
+                    <tr>
+                      <td>Oct 25</td>
+                      <td>Lazada Inc. Payment #29391</td>
+                      <td>-2,300</td>
+                      <td>1,000,000</td>
+                    </tr>
+                  </table>
+            </div>
+        </section>
+    </main>
+
+  </body>
+</html>

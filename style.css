@@ -1,0 +1,129 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;800&display=swap');
+:root {
+    --first-color: rgb(246, 244, 237);
+    --secondary-color: rgb(219, 204, 163);
+    --text-color: rgb(59, 49, 40);
+    --secondary-text-color: rgb(110, 97, 81);
+}
+
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Inter', sans-serif;
+    color: var(--text-color);
+    background-color: var(--first-color);
+}
+
+main {
+    height: 100vh;
+    display: grid;
+    grid-template-columns: 250px auto;
+}
+
+#logo {
+    color: var(--first-color);
+    margin-bottom: 1.5rem;
+}
+
+#side-menu {
+    font-size: 1rem;
+    padding: 1.2rem;
+    background-color: var(--text-color);
+}
+
+#side-menu ul {
+    list-style: none;
+}
+
+#side-menu ul li {
+    border-bottom: 1px solid var(--secondary-text-color);
+    padding: .8rem 0;
+}
+
+#side-menu a {
+    color: var(--secondary-color);
+    text-decoration: none;
+}
+
+#main-content {
+    padding: 2rem;
+}
+
+#main-content .account {
+    display: flex;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    background-color: white;
+    padding: 1.5rem;
+    border-radius: .3rem;
+    margin-bottom: 2rem;
+    box-shadow: 0px 1px 2px rgba(170, 170, 170, .4);
+}
+
+#main-content .balance {
+    font-weight: 800;
+    font-size: 2.5rem;
+}
+
+#main-content .details {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+#actions {
+    margin: 0rem 0;
+}
+
+#actions button {
+    background-color: var(--first-color);
+    color: var(--secondary-text-color);
+    padding: .5rem;
+    font-size: 1.1rem;
+    border: 0;
+    cursor: pointer;
+    transition: .3s;
+    border-radius: 3px;
+}
+
+#actions button:hover {
+    background-color: rgba(219, 204, 163, .3);
+    color: var(--text-color);
+}
+
+#transactions {
+    border-radius: .3rem;
+}
+
+#transactions table {
+    border-collapse: collapse;
+    table-layout: auto;
+    width: 100%;
+}
+
+#transactions th {
+    padding-bottom: 1rem;
+    font-weight: normal;
+}
+
+#transactions table th, td  {
+    border-bottom: 1px solid rgba(59, 49, 40, .2);
+}
+
+#transactions table tr {
+}
+
+#transactions table td:nth-child(1), #transactions table td:nth-child(2), 
+    #transactions th td:nth-child(2) {
+    text-align: left;
+    padding: .8rem;
+}
+
+#transactions table td:nth-child(3), #transactions table td:nth-child(4) {
+    text-align: right;
+    padding: .8rem;
+}
