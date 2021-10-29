@@ -11,7 +11,7 @@ export const Account = (props) => {
               <AccountHolder fullname={fullname} />
               <AccountType type={type} />
               <AccountNumber accountNumber={accountNumber} />
-              <ActionButtons />
+              {/* <ActionButtons /> */}
           </div>
           <AccountBalance balance={formatNumber(balance)} />
       </div>

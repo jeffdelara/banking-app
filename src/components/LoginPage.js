@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Logo } from './Logo';
+import { Notif } from './Notif';
 
 export const LoginPage = (props) => {
     const [username, setUsername] = useState('');
@@ -22,7 +23,7 @@ export const LoginPage = (props) => {
       <div id="login-page">
         <div id="login">
           <Logo />
-          <div className="notif danger">{props.notif}</div>
+          <Notif message={props.notif.message} style={props.notif.style} />
           <form onSubmit={onSubmitHandler}>
             <label htmlFor="username">Username</label>
             <input id="username" autoComplete="off" onChange={onChangeUsername}  value={username} type="text" />
