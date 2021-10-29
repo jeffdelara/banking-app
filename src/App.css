@@ -47,7 +47,7 @@ h1, h2, h3 {
 #form h1 {
   font-size: 2rem;
   margin-top: 0;
-  margin-bottom: 2rem;
+  margin-bottom: .8rem;
 }
 
 #logo {
@@ -257,6 +257,11 @@ input:disabled {
 
 .right {
   text-align: right;
+}
+
+.left {
+  text-align: left;
+  padding-left: 0;
 }
 
 .transfer-icon {

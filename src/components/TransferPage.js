@@ -8,7 +8,7 @@ export const TransferPage = (props) => {
     const [receivers, setReceivers] = useState(users);
     const [sender, setSender] = useState({balance: 0});
     const [receiver, setReceiver] = useState({balance: 0});
-    const [notif, setNotif] = useState({message: '', style: ''});
+    const [notif, setNotif] = useState({message: 'Transfer money from one account to another.', style: 'left'});
     const [transferAmount, setTransferAmount] = useState(0);
 
     const senderSelected = (event) => {
@@ -125,7 +125,7 @@ export const TransferPage = (props) => {
                 <label>Amount to Transfer</label>
                 <input type="text" name="amount" value={formatNumber(transferAmount)} onChange={onTransfer} autoComplete="off" className="right big-input" />
 
-                <div className="transfer-icon"><i class='bx bx-down-arrow-alt'></i></div>
+                <div className="transfer-icon"><i className='bx bx-down-arrow-alt'></i></div>
                 <h2>Receiver</h2>
                 <label>To (Receiver)</label>
                 <select value={receiver.number || 0} onChange={receiverSelected} name="receiver">
