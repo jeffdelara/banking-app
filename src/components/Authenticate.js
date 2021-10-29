@@ -5,7 +5,7 @@ import { LoginPage } from './LoginPage';
 
 export const Authenticate = () => {
     const [isLoggedIn, setIsLoggedIn] = useState(false);
-    const [notif, setNotif] = useState('');
+    const [notif, setNotif] = useState({message: '', style: ''});
     const [isAdmin, setIsAdmin] = useState(false);
   
     const localUsers = localStorage.getItem('users');
@@ -29,7 +29,7 @@ export const Authenticate = () => {
         }
       });
   
-      if(!isFound) setNotif('Wrong username or password.');
+      if(!isFound) setNotif({message: 'Wrong username and password.', style: 'danger'});
       return isFound;
     }
   
@@ -42,7 +42,7 @@ export const Authenticate = () => {
     const logout = () => {
         setIsLoggedIn(false);
         setIsAdmin(false);
-        setNotif('You have logged out.');
+        setNotif({message: 'You have logged out.', style: 'success'});
     }
   
     if(isLoggedIn) {
