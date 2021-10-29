@@ -4,5 +4,34 @@ export function formatNumber(number)
 }
 
 export function trim(number) {
-    return parseFloat(number.replace(/,/g, ''));
+    return parseFloat(number.replace(/,/g, '')) || 0;
+}
+
+export function findAccount(number) {
+    const users = JSON.parse(localStorage.getItem('users'));
+
+    for(const user of users) {
+        if(user.number === number) {
+            return user;
+        }
+    }
+
+    return false;
+}
+
+export function transact(number, amount, type, setUsers=null)
+{
+    let multiplier = 1;
+    if(type === 'add') multiplier = 1;
+    if(type === 'subtract') multiplier = -1;
+
+    const users = JSON.parse(localStorage.getItem('users'));
+    
+    for(const user of users) {
+        if(user.number === number) {
+            user.balance += amount * multiplier;
+        }
+    }
+    setUsers(users);
+    localStorage.setItem('users', JSON.stringify(users));
 }

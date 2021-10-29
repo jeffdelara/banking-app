@@ -3,6 +3,7 @@ import { Sidebar } from "./Sidebar";
 import { MainContent } from "./MainContent";
 import { CreateAccountPage } from "./CreateAccountPage";
 import { TransferPage } from "./TransferPage";
+import { DepositPage } from "./DepositPage";
 
 export const Dashboard = (props) => {
     const [page, setPage] = useState('home');
@@ -43,7 +44,7 @@ export const Dashboard = (props) => {
         return (
             <main>
                 <Sidebar changePage={changePageHandler} logoutHandler={props.logoutHandler} />
-                <h1>Deposit</h1>
+                <DepositPage users={users} setUsers={setUsers} />
             </main>
         )
     }
@@ -57,6 +58,3 @@ export const Dashboard = (props) => {
         )
     }
 }
-
-
-

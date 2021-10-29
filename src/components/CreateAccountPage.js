@@ -7,7 +7,7 @@ export const CreateAccountPage = (props) => {
         return Math.floor(1000000000 + Math.random() * 9000000000);
     }
     
-    const [notif, setNotif] = useState({message: '', style: ''});
+    const [notif, setNotif] = useState({message: 'Create a new client account.', style: 'left'});
     const [initialBalance, setInitialBalance] = useState(0);
     const [initialAccountNumber, setInitialAccountNumber] = useState(createRandomAccount());
 
