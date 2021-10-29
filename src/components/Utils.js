@@ -35,3 +35,8 @@ export function transact(number, amount, type, setUsers=null)
     setUsers(users);
     localStorage.setItem('users', JSON.stringify(users));
 }
+
+export function capitalize(str) 
+{
+    return str.charAt(0).toUpperCase() + str.slice(1);
+}

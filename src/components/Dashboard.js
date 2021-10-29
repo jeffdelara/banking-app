@@ -3,14 +3,25 @@ import { Sidebar } from "./Sidebar";
 import { MainContent } from "./MainContent";
 import { CreateAccountPage } from "./CreateAccountPage";
 import { TransferPage } from "./TransferPage";
-import { DepositPage } from "./DepositPage";
+import { TransactPage } from "./TransactPage";
+import { Notif } from "./Notif";
 
 export const Dashboard = (props) => {
     const [page, setPage] = useState('home');
     const [users, setUsers] = useState(props.users);
+    const [notif, setNotif] = useState({message: '', style: ''});
 
     const changePageHandler = (pageName) => {
         setPage(pageName);
+
+        if(pageName === 'withdraw') {
+            setNotif({message: 'Select an account to withdraw money from.', style: 'left'});
+        } 
+
+        if(pageName === 'deposit') {
+            setNotif({message: 'Select an account to deposit money.', style: 'left'});
+        }
+        
     }
 
     if(page === 'home') {
@@ -44,7 +55,7 @@ export const Dashboard = (props) => {
         return (
             <main>
                 <Sidebar changePage={changePageHandler} logoutHandler={props.logoutHandler} />
-                <DepositPage users={users} setUsers={setUsers} />
+                <TransactPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="add" page={page} />
             </main>
         )
     }
@@ -53,7 +64,7 @@ export const Dashboard = (props) => {
         return (
             <main>
                 <Sidebar changePage={changePageHandler} logoutHandler={props.logoutHandler} />
-                <h1>Withdraw</h1>
+                <TransactPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="subtract" page={page} />
             </main>
         )
     }
