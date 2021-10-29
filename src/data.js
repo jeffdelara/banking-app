@@ -1,5 +1,13 @@
 const DATA = [
-    
+    {
+        email: "admin@admin.com",
+        password: "abc123",
+        fullname: "Admin Account",
+        type: "Savings Peso",
+        number: "47290539480",
+        balance: 1000,
+        isAdmin: true
+    },
     {
         email: "jeff@gmail.com",
         password: "abc123",
