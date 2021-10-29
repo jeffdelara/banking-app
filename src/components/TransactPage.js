@@ -1,11 +1,12 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Notif } from "./Notif";
-import { formatNumber, findAccount, transact, trim } from "./Utils";
+import { formatNumber, findAccount, transact, trim, capitalize } from "./Utils";
 
-export const DepositPage = (props) => {
+export const TransactPage = (props) => {
     const users = JSON.parse(localStorage.getItem('users'));
-    const starting = {message: 'Deposit money to an account.', style: 'left'};
-    const [notif, setNotif] = useState(starting);
+    const starting = {message: '', style: 'left'};
+    const setNotif = props.setNotif;
+    const notif = props.notif;
     const [accounts, setAccounts] = useState(users);
     const [selectedAccount, setSelectedAccount] = useState({balance: 0});
     const [depositAmount, setDepositAmount] = useState(0);
@@ -15,7 +16,7 @@ export const DepositPage = (props) => {
     });
 
     const displayBalance = (e) => {
-        setNotif(starting);
+        setNotif(notif);
         const selectedNumber = e.target.value;
         
         for(const user of accounts) {
@@ -37,28 +38,28 @@ export const DepositPage = (props) => {
         const accountNumber = e.target.elements.account.value;
 
         if(amount > 0 && accountNumber !== "0") {
-            // console.log(selectedAccount, amount);
-            // find in accounts
             for(const user of accounts) {
                 if(user.number === accountNumber) {
-                    transact(user.number, amount, 'add', props.setUsers);
+                    transact(user.number, amount, props.type, props.setUsers);
                     setSelectedAccount(findAccount(user.number));
                     setAccounts(JSON.parse(localStorage.getItem('users')));
                     setDepositAmount(0);
-                    setNotif({message: 'Deposit successful.', style: 'success'});
+                    setNotif({message: `${capitalize(props.page)} successful.`, style: 'success'});
                     break;
                 }
             }
         } 
         else {
-            setNotif({message: 'Deposit failed.', style: 'danger'});
+            setNotif({message: `${capitalize(props.page)} failed.`, style: 'danger'});
         }
     }
+    // 'bx bx-up-arrow-alt'
+    const icon = props.page === 'withdraw' ? 'bx bx-down-arrow-alt' : 'bx bx-up-arrow-alt';
 
     return (
         <section id="main-content">
             <form id="form" onSubmit={processTransfer}>
-                <h1>Deposit</h1>
+                <h1>{props.page}</h1>
                 <Notif message={notif.message} style={notif.style} />
                 <label>Account</label>
                 <select name="account" onChange={displayBalance}>
@@ -69,10 +70,10 @@ export const DepositPage = (props) => {
                 <label>Current balance</label>
                 <input type="text" className="right" value={formatNumber(selectedAccount.balance)} disabled />
                 
-                <div className="transfer-icon"><i class='bx bx-plus'></i></div>
-                <label>Amount to Deposit</label>
+                <div className="transfer-icon"><i class={icon}></i></div>
+                <label>Amount to {props.page}</label>
                 <input type="text" name="amount" value={depositAmount} onChange={onDeposit} autoComplete="off" className="right big-input" />
-                <button type="submit" className="btn">Deposit</button>
+                <button type="submit" className="btn">{props.page}</button>
             </form>
         </section>
     )
