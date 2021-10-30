@@ -24,7 +24,17 @@ const DATA = [
         type: "Savings Peso",
         number: "47290539482",
         balance: 392830.22,
-        isAdmin: false
+        isAdmin: false, 
+        budget: [
+            {
+                title: "Tuition fee",
+                amount: 12000
+            },
+            {
+                title: "Food take out during the pandemic",
+                amount: 4000
+            }
+        ]
     },
     {
         email: "user24@gmail.com",
@@ -46,7 +56,7 @@ const DATA = [
     },
 
     {
-        email: "kibabe@gmail.com",
+        email: "derek@gmail.com",
         password: "abc123",
         fullname: "Karen Davila",
         type: "Checking Peso",
