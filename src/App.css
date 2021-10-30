@@ -275,3 +275,8 @@ input:disabled {
   font-size: 2rem;
   font-weight: 800;
 }
+
+.main {
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}

@@ -2,24 +2,50 @@ import React from 'react';
 import { Logo } from './Logo';
 
 export const Sidebar = (props) => {
+    const { user, logoutHandler, changePage } = props;
+    let menu = null;
+
+    // not regular user but an admin
+    if(!user) {
+        menu = <SideMenu changePage={changePage} logoutHandler={logoutHandler} />;
+    }
+
+    // regular user
+    if(user) {
+        menu = <ClientMenu changePage={changePage} logoutHandler={logoutHandler} />
+    }
+
     return(
         <section id="side-menu">
             <Logo />
-            <SideMenu changePage={props.changePage} logoutHandler={props.logoutHandler} />          
+            {menu}
         </section>
+    )
+}
+
+export const ClientMenu = (props) => {
+    const {changePage, logoutHandler} = props;
+
+    return (
+        <ul>
+            <SideLink onClickHandler={changePage} page="home" icon="bx bx-home" text="Home" />
+            <SideLink onClickHandler={changePage} page="budget" icon="bx bx-money" text="Budget App" />
+            <SideLink onClickHandler={changePage} page="transfer" icon="bx bx-transfer" text="Fund Transfer" />
+            <SideLink onClickHandler={logoutHandler} icon="bx bx-log-out" text="Logout" />
+        </ul>
     )
 }
   
 export const SideMenu = (props) => {
-
+    const {changePage, logoutHandler} = props;
     return (
         <ul>
-            <SideLink onClickHandler={props.changePage} page="home" icon="bx bx-home" text="Home" />
-            <SideLink onClickHandler={props.changePage} page="create-account" icon="bx bx-user-pin" text="Create Account" />
-            <SideLink onClickHandler={props.changePage} page="transfer" icon="bx bx-transfer" text="Fund Transfer" />
-            <SideLink onClickHandler={props.changePage} page="deposit" icon="bx bx-money" text="Deposit" />
-            <SideLink onClickHandler={props.changePage} page="withdraw" icon="bx bx-log-out-circle" text="Withdraw" />
-            <SideLink onClickHandler={props.logoutHandler} icon="bx bx-log-out" text="Logout" />
+            <SideLink onClickHandler={changePage} page="home" icon="bx bx-home" text="Home" />
+            <SideLink onClickHandler={changePage} page="create-account" icon="bx bx-user-pin" text="Create Account" />
+            <SideLink onClickHandler={changePage} page="transfer" icon="bx bx-transfer" text="Fund Transfer" />
+            <SideLink onClickHandler={changePage} page="deposit" icon="bx bx-money" text="Deposit" />
+            <SideLink onClickHandler={changePage} page="withdraw" icon="bx bx-log-out-circle" text="Withdraw" />
+            <SideLink onClickHandler={logoutHandler} icon="bx bx-log-out" text="Logout" />
         </ul>
     )
 }
