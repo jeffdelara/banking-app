@@ -3,10 +3,10 @@ import { Notif } from "./Notif";
 import { formatNumber } from "./Utils";
 
 export const TransferPage = (props) => {
-
+    const {isClient, client, setClient} = props;
     const [users, setUsers] = useState(props.users); 
     const [receivers, setReceivers] = useState(users);
-    const [sender, setSender] = useState({balance: 0});
+    const [sender, setSender] = useState( isClient ? client : {balance: 0});
     const [receiver, setReceiver] = useState({balance: 0});
     const [notif, setNotif] = useState({message: 'Transfer money from one account to another.', style: 'left'});
     const [transferAmount, setTransferAmount] = useState(0);
@@ -44,11 +44,14 @@ export const TransferPage = (props) => {
         setReceiver(receiver);
     }
 
-    const senders = users.map(user => {
-        return (
-            <option value={user.number}>{user.fullname} #{user.number}</option>
-        )
-    });
+    let senders = null;
+    if(!isClient) {
+        senders = users.map(user => {
+            return (
+                <option value={user.number}>{user.fullname} #{user.number}</option>
+            )
+        });
+    }
 
     const newReceivers = receivers.map(receiver => {
         return (
@@ -61,11 +64,10 @@ export const TransferPage = (props) => {
         const amount = parseFloat(event.target.elements.amount.value.replace(/,/g, ''));
         if(amount <= 0) return false;
 
-        console.log("Transfer");
         // get localstorage users
         const users = JSON.parse(localStorage.getItem('users'));
 
-        if(sender.number !== 0 && receiver.number !== 0) {
+        if(sender.number !== 0 && receiver.number !== 0 && receiver.number) {
             // deduct from sender
             let senderSuccess = false;
             users.forEach(user => {
@@ -107,6 +109,16 @@ export const TransferPage = (props) => {
         setTransferAmount(transfer);
     }
 
+    let senderField = 
+        <select onChange={senderSelected} name="sender">
+            <option>Select Sender</option>
+            {senders}
+        </select>;
+    
+    if(isClient) {
+        senderField = <input type="text" name="sender" value={`${client.fullname} #${client.number}`} disabled />
+    }
+
     return (
         <section id="main-content">
             <form id="form" onSubmit={transferFund}>
@@ -115,13 +127,11 @@ export const TransferPage = (props) => {
                 <Notif message={notif.message} style={notif.style} />
                 <h2>Sender</h2>
                 <label>From (Sender)</label>
-                <select onChange={senderSelected} name="sender">
-                    <option>Select Sender</option>
-                    {senders}
-                </select>
+                {senderField}
 
                 <label>Current balance</label>
                 <input type="text" className="right" value={formatNumber(sender.balance)} disabled />
+
                 <label>Amount to Transfer</label>
                 <input type="text" name="amount" value={formatNumber(transferAmount)} onChange={onTransfer} autoComplete="off" className="right big-input" />
 
