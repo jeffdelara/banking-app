@@ -4,7 +4,6 @@ import { MainContent } from "./MainContent";
 import { CreateAccountPage } from "./CreateAccountPage";
 import { TransferPage } from "./TransferPage";
 import { TransactPage } from "./TransactPage";
-import { Notif } from "./Notif";
 
 export const Dashboard = (props) => {
     const [page, setPage] = useState('home');

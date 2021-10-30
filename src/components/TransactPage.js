@@ -1,10 +1,9 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { Notif } from "./Notif";
 import { formatNumber, findAccount, transact, trim, capitalize } from "./Utils";
 
 export const TransactPage = (props) => {
     const users = JSON.parse(localStorage.getItem('users'));
-    const starting = {message: '', style: 'left'};
     const setNotif = props.setNotif;
     const notif = props.notif;
     const [accounts, setAccounts] = useState(users);

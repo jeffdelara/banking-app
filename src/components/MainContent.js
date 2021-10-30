@@ -3,8 +3,8 @@ import { Account } from "./Account";
 export const MainContent = (props) => {
     const users = props.users;
       
-    const bankAccounts = users.map(user => {
-      return <Account fullname={user.fullname} 
+    const bankAccounts = users.map((user, index) => {
+      return <Account key={index} fullname={user.fullname} 
         type={user.type} 
         accountNumber={user.number} 
         balance={user.balance} />
