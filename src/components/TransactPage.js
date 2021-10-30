@@ -69,7 +69,7 @@ export const TransactPage = (props) => {
                 <label>Current balance</label>
                 <input type="text" className="right" value={formatNumber(selectedAccount.balance)} disabled />
                 
-                <div className="transfer-icon"><i class={icon}></i></div>
+                <div className="transfer-icon"><i className={icon}></i></div>
                 <label>Amount to {props.page}</label>
                 <input type="text" name="amount" value={depositAmount} onChange={onDeposit} autoComplete="off" className="right big-input" />
                 <button type="submit" className="btn">{props.page}</button>
