@@ -1,12 +1,14 @@
 import React, {useState} from 'react';
 import { Sidebar } from './Sidebar';
-import { MainContent } from './MainContent';
-import { Account } from './Account';
+import { MainClientContent } from './MainClientContent';
 import { findAccount } from './Utils';
+import { TransferPage } from './TransferPage';
 
 export const ClientDashboard = (props) => {
     const { logout, client, setClient } = props;
+    const [users, setUsers] = useState(props.users);
     const [ page, setPage ] = useState('home');
+
   
     const changePageHandler = (pageName) => {
       setPage(pageName);
@@ -37,19 +39,9 @@ export const ClientDashboard = (props) => {
       return (
         <main>
           <Sidebar changePage={changePageHandler} user={client} logoutHandler={props.logout} />
-          <h1>Transfer</h1>
+          <TransferPage isClient="true" client={client} setClient={setClient} users={users} setUsers={setUsers}  />
         </main>
       )
     }
   }
-  
-const MainClientContent = props => {
-    const {user} = props;
-  
-    return (
-      <section id="main-content">
-        <h1 className="main">My Account</h1>
-        <Account type={user.type} accountNumber={user.number} balance={user.balance} fullname={user.fullname} />
-      </section>
-    )
-}
+

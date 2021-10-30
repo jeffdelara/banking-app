@@ -57,8 +57,7 @@ export const Authenticate = () => {
         return <Dashboard users={clients} logoutHandler={logout} />
       } else {
         localStorage.setItem('currentUser', JSON.stringify(client));
-        
-        return <ClientDashboard client={client} setClient={setClient} logout={logout} />
+        return <ClientDashboard client={client} users={clients} setClient={setClient} logout={logout} />
       }
     } else {
       return <LoginPage loginHandler={login} notif={notif} isLoggedIn={isLoggedIn} />
