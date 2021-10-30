@@ -3,6 +3,7 @@ import { Sidebar } from './Sidebar';
 import { MainClientContent } from './MainClientContent';
 import { findAccount } from './Utils';
 import { TransferPage } from './TransferPage';
+import { BudgetApp } from './BudgetApp';
 
 export const ClientDashboard = (props) => {
     const { logout, client, setClient } = props;
@@ -30,7 +31,7 @@ export const ClientDashboard = (props) => {
       return (
         <main>
           <Sidebar changePage={changePageHandler} user={client} logoutHandler={props.logout} />
-          <h1>Budget</h1>
+          <BudgetApp client={client} />
         </main>
       )
     }
@@ -43,5 +44,4 @@ export const ClientDashboard = (props) => {
         </main>
       )
     }
-  }
-
+}
