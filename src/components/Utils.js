@@ -45,13 +45,17 @@ export function saveBudgetToDB(accountNumber, newBudget)
 {
     const user = findAccount(accountNumber);
     user.budget = newBudget;
+    const filteredUsers = addUserToUsers(user);
+    localStorage.setItem('users', JSON.stringify(filteredUsers));
+}
 
+function addUserToUsers(user) {
     const users = JSON.parse(localStorage.getItem('users'));
+
     const filteredUsers = users.filter(dbUser => {
-        return dbUser.number !== accountNumber;
+        return dbUser.number !== user.number;
     });
 
     filteredUsers.push(user);
-
-    localStorage.setItem('users', JSON.stringify(filteredUsers));
+    return filteredUsers;
 }
