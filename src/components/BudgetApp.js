@@ -38,6 +38,17 @@ export const BudgetApp = (props) => {
 
     const deleteRow = (index) => {
         console.log('Delete', index);
+        // get all budgetlist except the index
+        const filteredBudget = budgetList.filter((item, budgetIndex) => {
+            return  index !== budgetIndex;
+        })
+        // add currentBalance by amount
+        console.log(currentBalance, budgetList[index].amount);
+        setCurrentBalance(currentBalance + budgetList[index].amount);
+        // set budgetlist
+        setBudgetList(filteredBudget);
+        // save budget to localhost
+        saveBudgetToDB(client.number, filteredBudget);
     }
 
     const modal = isModalOpen ? <BudgetModal 
