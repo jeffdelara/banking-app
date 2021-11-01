@@ -81,10 +81,15 @@ h1, h2, h3 {
 #side-menu a {
     color: var(--secondary-color);
     text-decoration: none;
+    display: block;
     transition: .3s;
 }
 
 #side-menu a:hover {
+  color: white;
+}
+
+#side-menu a.active {
   color: white;
 }
 
@@ -369,6 +374,10 @@ input:disabled {
 .budget-title {
   display: inline-block;
   width: 100%;
+}
+
+.budget-title span {
+  cursor: pointer;
 }
 
 .mr {

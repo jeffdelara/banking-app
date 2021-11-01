@@ -90,7 +90,7 @@ export const BudgetApp = (props) => {
                 <div className="budget-title">
                     <button type="button" onClick={() => deleteRow(index)} className="mr"><i class='bx bxs-x-square' ></i></button>
                     <button type="button" onClick={() => editRow(index)} className="mr"><i class='bx bx-edit-alt' ></i></button>
-                    {item.title}
+                    <span onClick={() => editRow(index)}>{item.title}</span>
                 </div>
                 <div>{formatNumber(item.amount)}</div>
             </div>
@@ -110,7 +110,7 @@ export const BudgetApp = (props) => {
                         </div>
                         <div>
                           <label>Remaining Budget</label>
-                          <h1>{formatNumber(currentBalance)}</h1>
+                          <h1 className={ currentBalance < 0 ? 'danger' : '' }>{formatNumber(currentBalance)}</h1>
                         </div>
                     </div>
 

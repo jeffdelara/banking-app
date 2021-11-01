@@ -26,7 +26,7 @@ export const Dashboard = (props) => {
     if(page === 'home') {
         return (
             <main>
-              <Sidebar changePage={changePageHandler} logoutHandler={props.logoutHandler} />
+              <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
               <MainContent users={users} />
             </main>
         )
@@ -35,7 +35,7 @@ export const Dashboard = (props) => {
     if(page === 'create-account') {
         return (
             <main>
-              <Sidebar changePage={changePageHandler} logoutHandler={props.logoutHandler} />
+              <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
               <CreateAccountPage users={users} setUsers={setUsers} />
             </main>
         )
@@ -44,7 +44,7 @@ export const Dashboard = (props) => {
     if(page === 'transfer') {
         return (
             <main>
-                <Sidebar changePage={changePageHandler} logoutHandler={props.logoutHandler} />
+                <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
                 <TransferPage users={users} setUsers={setUsers} />
             </main>
         )
@@ -53,7 +53,7 @@ export const Dashboard = (props) => {
     if(page === 'deposit') {
         return (
             <main>
-                <Sidebar changePage={changePageHandler} logoutHandler={props.logoutHandler} />
+                <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
                 <TransactPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="add" page={page} />
             </main>
         )
@@ -62,7 +62,7 @@ export const Dashboard = (props) => {
     if(page === 'withdraw') {
         return (
             <main>
-                <Sidebar changePage={changePageHandler} logoutHandler={props.logoutHandler} />
+                <Sidebar changePage={changePageHandler} page={page} logoutHandler={props.logoutHandler} />
                 <TransactPage users={users} setUsers={setUsers} notif={notif} setNotif={setNotif} type="subtract" page={page} />
             </main>
         )

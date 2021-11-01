@@ -21,7 +21,7 @@ export const ClientDashboard = (props) => {
       
       return (
         <main>
-          <Sidebar changePage={changePageHandler} user={client} logoutHandler={props.logout} />
+          <Sidebar changePage={changePageHandler} page={page} user={client} logoutHandler={props.logout} />
           <MainClientContent user={client} />
         </main>
       )
@@ -30,7 +30,7 @@ export const ClientDashboard = (props) => {
     if(page === 'budget') {
       return (
         <main>
-          <Sidebar changePage={changePageHandler} user={client} logoutHandler={props.logout} />
+          <Sidebar changePage={changePageHandler} page={page} user={client} logoutHandler={props.logout} />
           <BudgetApp client={client} />
         </main>
       )
@@ -39,7 +39,7 @@ export const ClientDashboard = (props) => {
     if(page === 'transfer') {
       return (
         <main>
-          <Sidebar changePage={changePageHandler} user={client} logoutHandler={props.logout} />
+          <Sidebar changePage={changePageHandler} page={page} user={client} logoutHandler={props.logout} />
           <TransferPage isClient="true" client={client} setClient={setClient} users={users} setUsers={setUsers}  />
         </main>
       )

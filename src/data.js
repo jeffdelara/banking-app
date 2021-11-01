@@ -63,6 +63,15 @@ const DATA = [
         number: "47290539485",
         balance: 574839.58, 
         isAdmin: false
+    },
+    {
+        email: "client@client.com",
+        password: "abc123",
+        fullname: "Client Demo Account",
+        type: "Savings Peso",
+        number: "47290539486",
+        balance: 1000,
+        isAdmin: false
     }
 ];
 
