@@ -388,3 +388,7 @@ input:disabled {
   color: red;
   cursor: pointer;
 }
+
+.title {
+  text-transform: capitalize;
+}

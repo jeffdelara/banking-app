@@ -49,6 +49,8 @@ export function saveBudgetToDB(accountNumber, newBudget)
     localStorage.setItem('users', JSON.stringify(filteredUsers));
 }
 
+
+
 function addUserToUsers(user) {
     const users = JSON.parse(localStorage.getItem('users'));
 
