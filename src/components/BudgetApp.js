@@ -5,15 +5,23 @@ export const BudgetApp = (props) => {
     const {client} = props;
     const [budgetList, setBudgetList] = useState(client.budget || []);
     const [isModalOpen, setIsModalOpen] = useState(false);
+    const [modalValue, setModalValue] = useState({title: '', amount: ''});
+    const [modalAction, setModalAction] = useState('add');
 
-    const balanceWithBudget = budgetList.reduce((prev, curr) => {
-        return prev + curr.amount
-    }, 0);
+    const getTotalExpenses = () => {
+        return budgetList.reduce((prev, curr) => {
+            return prev + curr.amount;
+        }, 0);
+    }
+
+    const totalExpenses = getTotalExpenses();
     
-    const [currentBalance, setCurrentBalance] = useState(client.balance - balanceWithBudget);
+    const [currentBalance, setCurrentBalance] = useState(client.balance - totalExpenses);
 
     const addBudget = (e) => {
         e.preventDefault();
+        setModalValue({title: '', amount: ''});
+        setModalAction('add');
         setIsModalOpen(true);
     }
 
@@ -32,29 +40,47 @@ export const BudgetApp = (props) => {
         }
     }
 
-    const editRow = (e) => {
-        console.log('Edit', e);
+    const updateBudget = ({id, amount, title}) => {
+        const budget = budgetList[id];
+        budget.title = title;
+        budget.amount = amount;
+
+        setBudgetList(budgetList);
+        saveBudgetToDB(client.number, budgetList);
+        const total = getTotalExpenses(budgetList);
+        // compute total balance
+        setCurrentBalance(client.balance - total);
+        setIsModalOpen(false);
+    }
+
+    const editRow = (index) => {
+        const budget = budgetList[index];
+        budget.id = index;
+
+        setModalValue(budget);
+        setModalAction('edit');
+        setIsModalOpen(true);
     }
 
     const deleteRow = (index) => {
-        console.log('Delete', index);
         // get all budgetlist except the index
         const filteredBudget = budgetList.filter((item, budgetIndex) => {
             return  index !== budgetIndex;
         })
-        // add currentBalance by amount
-        console.log(currentBalance, budgetList[index].amount);
+
         setCurrentBalance(currentBalance + budgetList[index].amount);
-        // set budgetlist
         setBudgetList(filteredBudget);
-        // save budget to localhost
         saveBudgetToDB(client.number, filteredBudget);
     }
 
     const modal = isModalOpen ? <BudgetModal 
-                  title="Add a budget" 
+                  title={modalValue.title}
+                  id={modalValue.id}
+                  amount={modalValue.amount}
+                  modalAction={modalAction} 
                   setIsModalOpen={setIsModalOpen}
-                  saveBudget={saveBudget} /> : '';
+                  saveBudget={saveBudget} 
+                  updateBudget={updateBudget} /> : '';
 
 
     const budget = budgetList.map((item, index) => {
@@ -99,21 +125,42 @@ export const BudgetApp = (props) => {
 }
 
 const BudgetModal = (props) => {
-    const {title, saveBudget, setIsModalOpen} = props;
+    const { saveBudget, updateBudget, setIsModalOpen, title, amount, modalAction, id} = props;
+    const [modalValue, setModalValue] = useState({id: id, title: title, amount: amount });
+    // add or edit?
+    const [action, setAction] = useState(modalAction);
+
     const onSubmit = (e) => {
         e.preventDefault();
-        saveBudget(e.target.elements.amount.value, e.target.elements.description.value);
+
+        if(action === 'add') {
+            saveBudget(modalValue.amount, modalValue.title);
+        }
+
+        if(action === 'edit') {
+            updateBudget(modalValue);
+
+        }
     }
+
+    const onChangeDescription = (e) => {
+        setModalValue({...modalValue, title: e.target.value});
+    }
+
+    const onChangeAmount = (e) => {
+        setModalValue({...modalValue, amount: parseFloat(e.target.value)});
+    }
+
     return (<div className="overlay">
         <div className="modal">
             <form onSubmit={onSubmit}>
-                <h2>{title}</h2>
+                <h2 className="title">{action} budget</h2>
                 <label>description</label>
-                <textarea name="description"></textarea>
+                <textarea name="title" onChange={onChangeDescription} defaultValue={modalValue.title}></textarea>
                 <label>Amount</label>
-                <input type="number" name="amount" autoComplete="off" />
+                <input type="number" name="amount" onChange={onChangeAmount} value={modalValue.amount} autoComplete="off" />
                 <button type="button" onClick={() => setIsModalOpen(false)} className="btn2 btn-muted">Cancel</button>
-                <button type="submit" className="btn2">Submit</button>
+                <button type="submit" className="btn2">{action} Budget</button>
             </form>
         </div>
     </div>
