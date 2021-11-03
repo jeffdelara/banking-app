@@ -45,7 +45,8 @@ export const CreateAccountPage = (props) => {
             type: user.accountType.value,
             number: user.accountNumber.value,
             isAdmin: false,
-            balance: trim(user.initialBalance.value)
+            balance: trim(user.initialBalance.value), 
+            transactions: []
         }
 
         const isSaved = createNewAccount(account);

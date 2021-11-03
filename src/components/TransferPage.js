@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { Notif } from "./Notif";
-import { formatNumber } from "./Utils";
+import { formatNumber, getDateToday } from "./Utils";
 
 export const TransferPage = (props) => {
     const {isClient, client, setClient} = props;
@@ -78,8 +78,19 @@ export const TransferPage = (props) => {
                 if(user.number === sender.number) {
                     if(user.balance - amount >= 0) {
                         user.balance -= amount;
+
+                        const transDate = new Date();
+                        console.log(user.transactions);
+                        user.transactions.unshift({
+                            title: `Fund transfer to ${receiver.fullname} #${receiver.number}`, 
+                            amount: amount, 
+                            type: "debit", 
+                            date: getDateToday()
+                        });
+
                         setSender(user);
                         senderSuccess = true;
+                        
                     }
                 }
             });
@@ -89,6 +100,14 @@ export const TransferPage = (props) => {
                 users.forEach(user => {
                     if(user.number === receiver.number) {
                         user.balance += amount;
+                        
+                        user.transactions.unshift({
+                            title: `Fund transfer from ${sender.fullname} #${receiver.number}`, 
+                            amount: amount, 
+                            type: "credit", 
+                            date: getDateToday()
+                        });
+
                         setReceiver(user);
                     }
                 });

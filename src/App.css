@@ -150,7 +150,24 @@ h1, h2, h3 {
 }
 
 #transactions {
-    border-radius: .3rem;
+    padding: 2rem;
+    border-radius: 3px;
+    background-color: white;
+    box-shadow: var(--shadow);
+    
+}
+
+#transaction-div {
+  display: flex;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.transaction-item {
+  display: grid;
+  grid-template-columns: 200px auto 100px;
+  padding: .8rem;
+
 }
 
 #transactions table {

@@ -6,7 +6,8 @@ const DATA = [
         type: "Savings Peso",
         number: "47290539480",
         balance: 1000,
-        isAdmin: true
+        isAdmin: true, 
+        transactions: []
     },
     {
         email: "jeff@gmail.com",
@@ -15,7 +16,8 @@ const DATA = [
         type: "Savings Peso",
         number: "47290539481",
         balance: 1029300.43,
-        isAdmin: true
+        isAdmin: true, 
+        transactions: []
     },
     {
         email: "jeff2@gmail.com",
@@ -34,6 +36,20 @@ const DATA = [
                 title: "Food take out during the pandemic",
                 amount: 4000
             }
+        ], 
+        transactions: [
+            {
+                title: "Fund transfer", 
+                amount: 2000,
+                type: "debit", 
+                date: "October 1, 2021"
+            }, 
+            {
+                title: "Withdraw", 
+                amount: 10000, 
+                type: "debit",
+                date: "October 1, 2021"
+            }
         ]
     },
     {
@@ -43,7 +59,8 @@ const DATA = [
         type: "Savings Peso",
         number: "47290539483",
         balance: 102938.34,
-        isAdmin: false
+        isAdmin: false, 
+        transactions: []
     },
     {
         email: "user34@gmail.com",
@@ -52,7 +69,8 @@ const DATA = [
         type: "Checking Peso",
         number: "47290539484",
         balance: 837495.38, 
-        isAdmin: false
+        isAdmin: false, 
+        transactions: []
     },
 
     {
@@ -62,7 +80,8 @@ const DATA = [
         type: "Checking Peso",
         number: "47290539485",
         balance: 574839.58, 
-        isAdmin: false
+        isAdmin: false, 
+        transactions: []
     },
     {
         email: "client@client.com",
@@ -71,7 +90,8 @@ const DATA = [
         type: "Savings Peso",
         number: "47290539486",
         balance: 1000,
-        isAdmin: false
+        isAdmin: false, 
+        transactions: []
     }
 ];
 
