@@ -24,6 +24,7 @@ export const Authenticate = () => {
         if(user.email === email && user.password === password) {
           if(user.isAdmin) {
             setIsAdmin(true);
+            setClient(user);
             isFound = true;
           }
           else {
@@ -53,10 +54,11 @@ export const Authenticate = () => {
     }
   
     if(isLoggedIn) {
+      localStorage.setItem('currentUser', JSON.stringify(client));
       if(isAdmin) {
         return <Dashboard users={clients} logoutHandler={logout} />
       } else {
-        localStorage.setItem('currentUser', JSON.stringify(client));
+        
         return <ClientDashboard client={client} users={clients} setClient={setClient} logout={logout} />
       }
     } else {
