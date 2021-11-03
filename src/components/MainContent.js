@@ -8,10 +8,9 @@ export const MainContent = (props) => {
 
     useEffect(() => {
       const localUser = JSON.parse(localStorage.getItem('currentUser'));
-      // setCurrentUser(JSON.parse());
       setIsCurrentUserAdmin(localUser.isAdmin);
     }, [isCurrentUserAdmin]);
-      
+    
     const bankAccounts = users.map((user, index) => {
       return <Account key={index} index={index} fullname={user.fullname} 
         type={user.type} 
@@ -28,5 +27,6 @@ export const MainContent = (props) => {
         {bankAccounts}
       </section>
     )
+    
   }
 

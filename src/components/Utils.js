@@ -22,14 +22,32 @@ export function findAccount(number) {
 export function transact(number, amount, type, setUsers=null)
 {
     let multiplier = 1;
-    if(type === 'add') multiplier = 1;
-    if(type === 'subtract') multiplier = -1;
+    if(type === 'add' || type === 'credit') multiplier = 1;
+    if(type === 'subtract' || type === 'debit') multiplier = -1;
 
     const users = JSON.parse(localStorage.getItem('users'));
     
     for(const user of users) {
         if(user.number === number) {
             user.balance += amount * multiplier;
+
+            if(type === 'add' || type === 'credit') {
+                user.transactions.unshift({
+                    title: `Deposit`, 
+                    amount: amount, 
+                    type: "credit", 
+                    date: getDateToday()
+                })
+            }
+
+            if(type === 'subtract' || type === 'debit') {
+                user.transactions.unshift({
+                    title: `Withdraw`, 
+                    amount: amount, 
+                    type: "debit", 
+                    date: getDateToday()
+                })
+            }
         }
     }
     setUsers(users);
@@ -60,4 +78,9 @@ function addUserToUsers(user) {
 
     filteredUsers.push(user);
     return filteredUsers;
+}
+
+export function getDateToday() {
+    const transDate = new Date();
+    return `${transDate.toLocaleString("en-us", { month: "long" })} ${transDate.getDay()}, ${transDate.getFullYear()}`;
 }
