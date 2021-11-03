@@ -3,7 +3,13 @@ import { ActionButtons } from "./ActionButtons";
 import { formatNumber } from "./Utils";
 
 export const Account = (props) => {
-    const {type, accountNumber, balance, fullname} = props;
+    
+    const {type, accountNumber, balance, fullname, editingUser, setEditingUser, setDeleteUser, index, isAdmin, setEditModal} = props;
+    
+    const action = isAdmin ? <ActionButtons index={index} 
+      editingUser={editingUser} 
+      setEditingUser={setEditingUser} 
+      setEditModal={setEditModal} setDeleteUser={setDeleteUser} /> : '';
     
     return (
       <div className="account">
@@ -11,7 +17,7 @@ export const Account = (props) => {
               <AccountHolder fullname={fullname} />
               <AccountType type={type} />
               <AccountNumber accountNumber={accountNumber} />
-              {/* <ActionButtons /> */}
+              {action}
           </div>
           <AccountBalance balance={formatNumber(balance)} />
       </div>
