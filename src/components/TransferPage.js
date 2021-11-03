@@ -14,16 +14,17 @@ export const TransferPage = (props) => {
     const senderSelected = (event) => {
         const accountNumber = event.target.value;
 
-        const newUsers = [];
         let sender = null; 
 
         users.forEach(user => {
             if(user.number === accountNumber) {
                 sender = user;        
-            } else {
-                newUsers.push(user);
             }
         })
+
+        const newUsers = users.filter((user, index) => {
+            return user.number !== accountNumber;
+        });
 
         setSender(sender);
         setReceivers(newUsers);
@@ -54,9 +55,12 @@ export const TransferPage = (props) => {
     }
 
     const newReceivers = receivers.map(receiver => {
-        return (
-            <option value={receiver.number}>{receiver.fullname} #{receiver.number}</option>
-        )
+        if(sender.number !== receiver.number) {
+            return (
+                <option value={receiver.number}>{receiver.fullname} #{receiver.number}</option>
+            )
+        }
+        
     })
 
     const transferFund = event => {
