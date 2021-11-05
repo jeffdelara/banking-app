@@ -12,6 +12,11 @@ export const CreateAccountPage = (props) => {
     const [initialAccountNumber, setInitialAccountNumber] = useState(createRandomAccount());
 
     const createNewAccount = (user) => {
+
+        const emptyInputs = Object.values(user).filter(input => {
+            return input === ''
+        });
+
         const localUsers = props.users;
 
         let alreadyExists = false;
@@ -23,6 +28,9 @@ export const CreateAccountPage = (props) => {
 
         if(alreadyExists) {
             setNotif({message: 'This email already exists. Try again.', style: 'danger'});
+            return false;
+        } else if(emptyInputs.length > 0) {
+            setNotif({message: 'All fields are required.', style: 'danger'});
             return false;
         } else {
             setNotif('');
